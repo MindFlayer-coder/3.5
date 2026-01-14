@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Générateur de PNJ D&D 3.5</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <h1>Générateur de PNJ D&amp;D 3.5</h1>
+        <p>
+          Prototype interactif : humain, nain, elfe • guerrier, barbare,
+          roublard.
+        </p>
+      </header>
+
+      <section class="panel">
+        <h2>Paramètres</h2>
+        <form id="npc-form" class="form">
+          <div class="form__row">
+            <label for="npc-name">Nom</label>
+            <input id="npc-name" name="npcName" type="text" placeholder="PNJ" />
+          </div>
+
+          <div class="form__row">
+            <label for="race">Race</label>
+            <select id="race" name="race"></select>
+          </div>
+
+          <div class="form__row">
+            <label for="class">Classe</label>
+            <select id="class" name="class"></select>
+          </div>
+
+          <div class="form__row">
+            <label for="level">Niveau</label>
+            <input id="level" name="level" type="number" min="1" max="20" value="1" />
+          </div>
+
+          <fieldset class="form__group">
+            <legend>Répartition des caractéristiques</legend>
+            <div class="form__row">
+              <label for="allocation">Méthode</label>
+              <select id="allocation" name="allocation">
+                <option value="fixed" selected>Valeurs fixes (15,14,13,12,10,8)</option>
+                <option value="manual">Saisie manuelle</option>
+              </select>
+            </div>
+            <div class="abilities-grid" id="abilities"></div>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <legend>Dons</legend>
+            <div class="form__row">
+              <div class="form__inline">
+                <strong>Dons sélectionnés :</strong>
+                <span id="feat-count">0/0</span>
+              </div>
+              <div class="form__hint" id="feat-over"></div>
+            </div>
+            <div class="checkbox-grid" id="feats"></div>
+            <div class="form__row">
+              <label for="feat-custom">Ajouter un don (nom exact)</label>
+              <div class="form__inline">
+                <input id="feat-custom" type="text" placeholder="Nom du don" />
+                <button type="button" id="feat-add">Ajouter</button>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="form__group">
+            <legend>Compétences</legend>
+            <div class="form__row">
+              <div class="form__inline">
+                <strong>Points :</strong>
+                <span id="skill-summary"></span>
+              </div>
+            </div>
+            <div class="skills-grid" id="skills"></div>
+          </fieldset>
+
+          <div class="form__actions">
+            <button type="submit">Générer</button>
+            <button type="button" id="export-json">Enregistrer JSON</button>
+          </div>
+        </form>
+      </section>
+
+      <section class="panel">
+        <h2>Bloc de statistiques (HTML)</h2>
+        <div id="stat-block" class="stat-block"></div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
